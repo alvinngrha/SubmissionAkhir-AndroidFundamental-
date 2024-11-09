@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_Event"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:textAppearance="?android:attr/textAppearanceListItemSmall">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/iv_event"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal" />
+
+
+        <TextView
+            android:id="@+id/tv_eventname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Event"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_ownername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Owner Name: "
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_cityname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="City Name"
+            />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
