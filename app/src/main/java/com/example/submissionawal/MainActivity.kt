@@ -2,16 +2,23 @@ package com.example.submissionawal
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.submissionawal.databinding.ActivityMainBinding
+import com.example.submissionawal.ui.setting.SettingPreferences
+import com.example.submissionawal.ui.setting.SettingViewModel
+import com.example.submissionawal.ui.setting.ViewModelFactory
+import com.example.submissionawal.ui.setting.dataStore
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var settingViewModel: SettingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +40,19 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+
+        val pref = SettingPreferences.getInstance(applicationContext.dataStore)
+        settingViewModel = ViewModelProvider(this, ViewModelFactory(pref))
+            .get(SettingViewModel::class.java)
+
+        settingViewModel.getThemeSettings()
+            .observe(this) { isDarkModeActive: Boolean ->
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            }
 
 
     }

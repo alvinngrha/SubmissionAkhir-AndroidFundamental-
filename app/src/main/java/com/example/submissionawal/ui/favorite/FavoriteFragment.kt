@@ -56,13 +56,14 @@ class FavoriteFragment : Fragment() {
                 val favoriteData = convertToEvent(result)
                 Log.d("FavoriteFragment", "Received favorite data: $favoriteData")
                 eventAdapter.submitList(favoriteData)
+                binding?.rvFavorite?.adapter = eventAdapter
             } else {
                 binding?.pbFavorite?.visibility = View.VISIBLE
             }
         }
     }
 
-fun convertToEvent(favoriteEvents: List<FavoriteEvent>): List<Event> {
+private fun convertToEvent(favoriteEvents: List<FavoriteEvent>): List<Event> {
         return favoriteEvents.map { favorite ->
             Event(
                 id = favorite.id,
